@@ -108,3 +108,11 @@ RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.d
 # install git lfs
 RUN sudo apt-get install git-lfs
 RUN git lfs install
+
+# install gdrive
+RUN wget https://github.com/glotlabs/gdrive/releases/download/3.9.0/gdrive_linux-x64.tar.gz && \
+    tar -xf gdrive_linux-x64.tar.gz && \
+    rm gdrive_linux-x64.tar.gz
+COPY private/gdrive_export-inifyy_gmail_com.tar /root/
+# add personal account
+RUN gdrive account import gdrive_export-inifyy_gmail_com.tar
